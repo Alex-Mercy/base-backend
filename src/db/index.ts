@@ -1,4 +1,6 @@
-const Pool = require("pg").Pool;
+import pg from "pg";
+const { Pool } = pg;
+
 const pool = new Pool({
   user: "postgres",
   password: "admin",
@@ -7,4 +9,4 @@ const pool = new Pool({
   database: "base_backend",
 });
 
-export default pool;
+// export default class DBDataService implements

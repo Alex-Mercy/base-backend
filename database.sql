@@ -1,4 +1,4 @@
-create TABLE Person(
+create TABLE Post(
     id SERIAL PRIMARY KEY,
     author VARCHAR(255),
     title VARCHAR(255),

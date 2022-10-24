@@ -1,17 +1,17 @@
-import db from "../src/db/index.js";
+import db from "../db/index.js";
 
 class PostController {
   async createPost(req, res) {
-    const { author, title, content, picture } = req.body;
+    const { id, author, title, content, picture } = req.body;
     const newPost = await db.query(
-      "INSERT INTO Post(author, title, content, picture values ($1, $2, $3, $4 RETURNING *",
-      [author, title, content, picture]
+      "INSERT INTO Post(id, author, title, content, picture) values ($1, $2, $3, $4, $5) RETURNING *",
+      [id, author, title, content, picture]
     );
     res.json(newPost.rows[0]);
   }
   async getPosts(req, res) {
-    const posts = await db.query("SELECT from *");
-    res.json(posts.rows);
+    const post = await db.query("SELECT * from Post");
+    res.json(post.rows);
   }
   async updatePost(req, res) {
     const { id, author, title, content, picture } = req.body;
@@ -28,4 +28,4 @@ class PostController {
   }
 }
 
-export default PostController;
+export default new PostController();
